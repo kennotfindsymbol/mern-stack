@@ -14,11 +14,14 @@ app.use((req, res, next) => {
   next()
 })
 
+// routes
 app.use('/api/workouts', workoutRoutes)
 
+// connect to mongodb
 mongoose.connect(process.env.MONG_URI)
   .then(() => {
     console.log('connected to Mongo');
+    // listen for requests
     app.listen(process.env.PORT, () => {
       console.log(`listening on port ${process.env.PORT}`)
     })
