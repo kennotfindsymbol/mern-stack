@@ -26,6 +26,17 @@ const getWorkout = async (req, res) => {
 // create a workout
 const createWorkout = async (req, res) => {
   const {title, load, reps} = req.body
+
+  const emptyFields = []
+  for (const key in req.body){
+    if(!req.body[key]){
+      emptyFields.push(key)
+    }
+  }
+  if(emptyFields.length > 0){
+    return res.status(400).json({error: 'Please fill in all the fields', emptyFields})
+  }
+
   try {
     const workout = await Workout.create({title, load, reps})
     res.status(200).json(workout)
