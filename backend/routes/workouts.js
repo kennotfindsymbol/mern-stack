@@ -13,7 +13,7 @@ router.get('/', getWorkouts)
 
 router.get('/:id', getWorkout)
 
-router.post('/:id', createWorkout)
+router.post('/', createWorkout)
 
 router.delete('/:id', deleteWorkout)
 
